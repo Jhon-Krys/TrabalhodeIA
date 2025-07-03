@@ -1,3 +1,5 @@
+const readline = require('readline');
+
 function gerarEstados(Movimentos) {
     const moves = [
         "U", "U'", "U2",
@@ -19,4 +21,23 @@ function gerarEstados(Movimentos) {
     return estados;
 }
 
-module.exports = { gerarEstados };
+function escolherAleatorio(lista) {
+    const indice = Math.floor(Math.random() * lista.length);
+    return lista[indice];
+}
+
+function perguntar(texto) {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  return new Promise(resolve => {
+    rl.question(texto, (resposta) => {
+      rl.close();
+      resolve(resposta);
+    });
+  });
+}
+
+module.exports = { gerarEstados, escolherAleatorio, perguntar};
